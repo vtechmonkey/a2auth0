@@ -6,10 +6,10 @@ const app = express();
 
 const jwt = require('express-jwt');
 const cors = require('cors');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 
