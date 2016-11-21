@@ -1,87 +1,146 @@
 'use strict';
-// load dependencies
-
+// Load required packages
 const express = require('express');
-const app = express();
-
+var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+var Activity = require('./models/activity');
 const jwt = require('express-jwt');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+// Connect to the beerlocker MongoDB
+mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti');
 
+// Create our Express application
+const app = express();
+
+// Use the body-parser package in our application
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
+//use cors 
+app.use(cors());
+// Use environment defined port or 3000
+var port = process.env.PORT || 3000;
 
 const authCheck =jwt({
-	secret: new Buffer('by27muMa4KanRODi_XPA05egyA2VQnfI9FVpi157dS-MzXK9V9wLPAVGJBH-giCr', 'base64'),
-	audience: 'pwDyOusCeQTYNKMtHMgjVy8y89TQtASm'
+ secret: new Buffer('by27muMa4KanRODi_XPA05egyA2VQnfI9FVpi157dS-MzXK9V9wLPAVGJBH-giCr', 'base64'),
+ audience: 'pwDyOusCeQTYNKMtHMgjVy8y89TQtASm'
 });
 
-app.get('/api/activities/public', (req, res)=>{
 
-	let activities = [
-	//array of public activities here 
-	{
-		id: 101,
-		name: 'Christmas Party',
-		venue: 'Stags Head',
-		Price: '€50',
-		date: '24/12/16',
-		time: '8pm'
-	},
-	{
-		id: 502,
-		name: 'Canoing for Beginners',
-		venue: 'Grand Canal Dock',
-		Price: '€10',
-		date: 'Every Sat',
-		time: '10am'
-	},
-	{
-		id: 403,
-		name: '5 Aside',
-		venue: 'Phoenix Park',
-		Price: 'free',
-		date: 'Tues ',
-		time: '8pm'
-	}
-	];
-	res.json(activities);
-	
-})
+// Create our Express router
+var router = express.Router();
 
-// private route
+// Initial dummy route for testing
+// http://localhost:3000/api
+router.get('/', function(req, res) {
+  res.json({ message: 'You are running dangerously low on stuff to do!' }); 
+});
 
-app.get('/api/activities/private', (req,res)=>{
-	let activities = [
-	{
-		id:504,
-		name: 'House Warming',
-		venue: 'Morgans House',
-		Price: 'bottle of wine',
-		date: '24/11/16',
-		time: '8pm'
-	},
-	{
-		id:505,
-		name: 'St Marys School reunion ',
-		venue: 'St Marys Hall',
-		Price: 'free',
-		date: '21/01/17',
-		time: '7pm'
-	},
-	{
-		id:506,
-		name: 'Mammies Christmas Drinks',
-		venue: 'Walshes',
-		Price: 'pints',
-		date: '18/12/16 ',
-		time: '8pm'
-	},
-	];
-	res.json(activities);
-})
+// Create a new route with the prefix /beers
+var activitiesRoute = router.route('/activities');
 
-app.listen(3001);
-console.log('Serving activities on localhost:3001');
+// Create endpoint /api/activities for POSTS
+activitiesRoute.post(function(req, res) {
+  // Create a new instance of the Activity model
+  var activity = new Activity();
+
+  // Set the properties that came from the POST data
+  activity.name = req.body.name;
+  activity.venue = req.body.venue;
+  activity.date = req.body.date;
+  activity.time = req.body.time;
+  activity.isPrivate = req.body.isPrivate;
+  activity.price = req.body.price;
+  // Save and check for errors
+  activity.save(function(err) {
+    if (err)
+      res.send(err);
+    res.json({ message: 'Stuff added to the locker!', data: activity });
+  });
+});
+
+// Create endpoint /api/activities for GET
+activitiesRoute.get(function(req, res) {
+  // Use the Activity model to find all activity
+  Activity.find(function(err, activities) {
+    if (err)
+      res.send(err);
+    res.json(activities);
+  });
+});
+
+//create private activities route
+var privateActivitiesRoute = router.route('/activities/private');
+//create private activities route 
+privateActivitiesRoute.get(function(req,res) {
+  Activity.find({ isPrivate: 'true'}, function (err, activities){
+    if(err)
+      res.send(error);
+    res.json(activities);
+  });
+});
+var publicActivitiesRoute = router.route('/activities/public');
+publicActivitiesRoute.get(function(req, res) {
+  Activity.find({ isPrivate: {$ne: 'true' }}, function (err, activities){
+    if(err)
+      res.send(error);
+    res.json(activities);
+  });
+});
+
+ // Create a new route with the /activities/:activity_id prefix
+var activityRoute = router.route('/activities/:activity_id');
+
+// Create endpoint /api/activities/:activity_id for GET
+activityRoute.get(function(req, res) {
+ // Use the Activity model to find a specific activity
+Activity.findById(req.params.activity_id, function(err, activity) {
+    if (err)
+      res.send(err);
+
+    res.json(activity);
+  });
+});
+
+//  Create endpoint /api/activities/:activity_id for PUT
+activityRoute.put(function (req, res){
+  //use activity model to update specific activity
+  Activity.findById(req.params.activity_id, function(err, activity){
+    if (err)
+      res.send(err);
+    //update activity time 
+    activity.name = req.body.name;
+    activity.venue = req.body.venue;
+    activity.date = req.body.time;
+    activity.time = req.body.date;
+    activity.isPrivate = req.body.isPrivate;
+    
+
+    //save update
+    activity.save(function(err){
+      if(err)
+        res.send(err);
+      res.json(activity);
+    });
+  });
+});
+
+// delete activity endpoint
+activityRoute.delete( function (req, res){
+  //find activity using Activty model
+  Activity.findByIdAndRemove(req.params.activity_id, function(err, activity){
+    if(err)
+      res.send(err);
+    //delete the activity 
+      res.json({message: 'activity removed!'});
+  });
+});
+
+// Register all our routes with /api
+app.use('/api', router);
+
+// Start the server
+app.listen(port);
+console.log('Insert activity on port ' + port);

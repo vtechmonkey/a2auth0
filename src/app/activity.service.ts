@@ -8,8 +8,8 @@ import { Activity } from './activity';
 
 @Injectable()
 export class ActivityService {
-	private publicActivitiesUrl = 'http://localhost:3001/api/activities/public';
-	private privateActivitiesUrl = 'http://localhost:3001/api/activities/private';
+	private publicActivitiesUrl = 'http://localhost:3000/api/activities/public';
+	private privateActivitiesUrl = 'http://localhost:3000/api/activities/private';
 										
 	constructor(private http: Http, private authHttp: AuthHttp){ }
 

@@ -2,7 +2,7 @@ export class Activity {
 	id: number;
 	name: string;
 	venue: string; 
-	Price: string;
+	price: string;
 	date: string;
 	time: string;
 }

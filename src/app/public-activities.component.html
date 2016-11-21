@@ -1,4 +1,10 @@
-<h3 class="text-center">Daily Activities</h3>
+<h3 class="text-center">Public Activities</h3>
+<div class="col-sm-12" *ngIf="!authService.loggedIn()">
+	<div class="jumbotron text-center">
+		<h2>Login to view your invites</h2>
+		<a class="btn btn-lg btn-success" (click)=authService.login() routerLink="/special">Private Activities</a>
+	</div>
+</div>
 <div class="col-sm-4" *ngFor="let activity of publicActivities">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -18,16 +24,11 @@
 				<li class="pull-right">Max Price</li>
 			</ul>
 			<ul class="list-inline">
-				<li><a class="btn btn-danger">€{{activity.Price}}</a></li>
+				<li><a class="btn btn-danger">€{{activity.price}}</a></li>
 				<li class="pull-right"><a class="btn btn-success">€</a></li>
 			</ul>
 		</div>
 	</div>
 </div>
-<div class="col-sm-12" *ngIf="!authService.loggedIn()">
-	<div class="jumbotron text-center">
-		<h2>Login to view your invites</h2>
-		<a class="btn btn-lg btn-success" routerLink="/private">Private Activities</a>
-	</div>
-</div>
+
 

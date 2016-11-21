@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 			</div>
 			<ul class="nav navbar-nav">
 				<li>
-					<a routerLink="/activities" routerLinkActive="active">Public Activities</a>
+					<a routerLink="/activities" *ngIf="authService.loggedIn()" routerLinkActive="active">Public Activities</a>
 				</li>
 				<li>
 					<a routerLink="/special" *ngIf="authService.loggedIn()" routerLinkActive="active">Private Activities</a>
@@ -35,7 +35,7 @@ import { AuthService } from './auth.service';
   styleUrls: [`.navbar-right { margin-right: 0px !important }`]
 })
 export class AppComponent {
-  title = 'A2Auth0';
+  title = 'Bubblbook';
 
   constructor(private authService: AuthService) {}
 }
