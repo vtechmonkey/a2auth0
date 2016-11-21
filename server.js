@@ -111,10 +111,15 @@ activityRoute.put(function (req, res){
     if (err)
       res.send(err);
     //update activity time 
-    activity.name = req.body.name;
-    activity.venue = req.body.venue;
-    activity.date = req.body.time;
-    activity.time = req.body.date;
+    if (req.body.name)
+      activity.name = req.body.name;
+    if(req.body.venue)
+      activity.venue = req.body.venue;
+    if (req.body.date)
+      activity.date = req.body.date;
+     if(req.body.time)
+      activity.time = req.body.time;
+    if(req.body.isPrivate)
     activity.isPrivate = req.body.isPrivate;
     
 
