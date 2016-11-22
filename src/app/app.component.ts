@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
+import { Activity } from './activity';
+import { ActivityService } from './activity.service';
 
 @Component({
   selector: 'daily-activities',
@@ -27,6 +30,11 @@ import { AuthService } from './auth.service';
 				</li>
 			</ul>
 		</nav>
+		<div>
+	<label>Add an Activity: </label> <input #activityName />
+	<button (click)="add(activityName.value); activityName.value=''">Add</button>
+	</div>
+
 		<div class="col-sm-12">
 			<router-outlet></router-outlet>
 		</div>
@@ -36,6 +44,19 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'Bubblbook';
+  activities: Activity[];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+  	private router: Router,
+  	private activityService: ActivityService,
+  	private authService: AuthService) {}
+
+  add(name: string): void {
+		name = name.trim();
+		if (!name) { return; }
+		this.activityService.create(name)
+		.then(activity => {
+			this.activities.push(activity);
+		});
+	}
 }

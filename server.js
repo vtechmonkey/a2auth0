@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 var Activity = require('./models/activity');
 const jwt = require('express-jwt');
 const cors = require('cors');
+//http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti');
 

@@ -8,12 +8,31 @@ import { Activity } from './activity';
 
 @Injectable()
 export class ActivityService {
+
+	private headers = new Headers({'Content-Type': 'application/json'});
+	private activitiesUrl = 'http://localhost:3000/api/activities';
 	private publicActivitiesUrl = 'http://localhost:3000/api/activities/public';
 	private privateActivitiesUrl = 'http://localhost:3000/api/activities/private';
-										
+								
 	constructor(private http: Http, private authHttp: AuthHttp){ }
 
-	getPublicActivities() {
+	getActivities(): Promise<Activity[]> {
+		return this.http
+		.get(this.activitiesUrl)
+		.toPromise()
+		.then(response => response.json().data as Activity[])
+		.catch(this.handleError);
+	}
+
+	create(name:string): Promise<Activity> {
+		return this.http
+			.post(this.activitiesUrl, JSON.stringify({name: name}), {headers: this.headers})
+			.toPromise()
+			.then(res => res.json().data)
+			.catch(this.handleError);
+	}
+
+	getPublicActivities() : Promise<Activity[]> {
 		return this.http
 		.get(this.publicActivitiesUrl)
 		.toPromise()
@@ -21,7 +40,7 @@ export class ActivityService {
 		.catch(this.handleError);
 	}
 
-	getPrivateActivities() {
+	getPrivateActivities() : Promise<Activity[]> {
 		return this.authHttp
 		.get(this.privateActivitiesUrl)
 		.toPromise()
