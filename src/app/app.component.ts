@@ -31,7 +31,8 @@ import { ActivityService } from './activity.service';
 			</ul>
 		</nav>
 		<div>
-	<label>Add an Activity: </label> <input #activityName />
+		<h2>Add your activity</h2>
+	<label>Name of Activity: </label> <input #activityName />
 	<button (click)="add(activityName.value); activityName.value=''">Add</button>
 	</div>
 
