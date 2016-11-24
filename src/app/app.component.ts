@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
+import { QuestionService } from './question.service';
 
 @Component({
   selector: 'daily-activities',
@@ -32,8 +32,8 @@ import { ActivityService } from './activity.service';
 		</nav>
 		<div>
 		<h2>Add your activity</h2>
-	<label>Name of Activity: </label> <input #activityName />
-	<button (click)="add(activityName.value); activityName.value=''">Add</button>
+		<dynamic-form [questions] ="questions"></dynamic-form>
+	
 	</div>
 
 		<div class="col-sm-12">
@@ -41,16 +41,24 @@ import { ActivityService } from './activity.service';
 		</div>
 	</div>
  `,
-  styleUrls: [`.navbar-right { margin-right: 0px !important }`]
+  styleUrls: [`.navbar-right { margin-right: 0px !important }`],
+  providers: [QuestionService]
 })
 export class AppComponent {
   title = 'Bubblbook';
   activities: Activity[];
+  questions: any[];
 
   constructor(
   	private router: Router,
   	private activityService: ActivityService,
-  	private authService: AuthService) {}
+  	private authService: AuthService,
+  	private questionService: QuestionService 
+  	) {
+  	this.questions = questionService.getQuestions();
+  }
+
+  	
 
   add(name: string): void {
 		name = name.trim();
