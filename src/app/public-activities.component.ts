@@ -1,28 +1,56 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
-
+import {Http} from '@angular/http';
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
 
 @Component({
   selector: 'public-activities',
   templateUrl: 'public-activities.component.html',
+    //providers: [...HTTP_PROVIDERS, ActivityService],
   styleUrls: ['public-activities.component.css']
 })
-export class PublicActivitiesComponent implements OnInit {
-  publicActivities: Activity[];
+
+
+
+
+export class PublicActivitiesComponent {
+
+ private publicActivities: Array<Activity> = [];
+ activityData = {
+   name: '',
+   venue: '',
+   price: '',
+   date: '',
+   time: ''
+
+ };
 
   constructor(
-    private activityService: ActivityService,
+    public activityService: ActivityService,
     private authService: AuthService) {
+    activityService.getPublicActivities()
+    .subscribe((res)=> {
+      this.publicActivities = res;
+    });
   }
 
-  ngOnInit(): void {
-    this.activityService.getPublicActivities()
-      .then(activities => this.publicActivities = activities);
-  }
-  
-  attend(item){
-    alert("You bought the: " + item.name);
-  }
+ createActivity() {
+   this.activityService.createActivity(this.activityData)
+   .subscribe((res) =>{
+     this.publicActivities = res;
+     this.activityData.name = '';
+     this.activityData.venue = '';
+     this.activityData.price = '';
+     this.activityData.date = '';
+     this.activityData.time = '';
+   });
+ }
+ deleteActivity(id) {
+   this.activityService.deleteActivity(id)
+   .subscribe((res)=> {
+     this.publicActivities = res;
+   });
+ }
+ 
 }

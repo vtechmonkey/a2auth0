@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
 import { QuestionService } from './question.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'daily-activities',
@@ -31,11 +33,8 @@ import { QuestionService } from './question.service';
 			</ul>
 		</nav>
 		<div>
-		<h2>Add your activity</h2>
-		<dynamic-form [questions] ="questions"></dynamic-form>
-	
-	</div>
-
+			<input type="text" [formControl]="af" />
+		</div>
 		<div class="col-sm-12">
 			<router-outlet></router-outlet>
 		</div>
@@ -46,26 +45,35 @@ import { QuestionService } from './question.service';
 })
 export class AppComponent {
   title = 'Bubblbook';
-  activities: Activity[];
-  questions: any[];
+
+	private activity: Array<Activity>;
+  	af = new FormControl();
+
 
   constructor(
   	private router: Router,
   	private activityService: ActivityService,
-  	private authService: AuthService,
-  	private questionService: QuestionService 
-  	) {
-  	this.questions = questionService.getQuestions();
+  	private authService: AuthService){
+
   }
-
-  	
-
-  add(name: string): void {
-		name = name.trim();
-		if (!name) { return; }
-		this.activityService.create(name)
-		.then(activity => {
-			this.activities.push(activity);
-		});
-	}
 }
+  // 	private questionService: QuestionService 
+  // 	) {
+  // 	this.questions = questionService.getQuestions();
+  		
+//    ){
+//   	this.activityService.createActivity(this)
+//   		.subscribe(af => this.activityService)
+//   	}
+
+// }
+
+//   add(name: string): void {
+// 		name = name.trim();
+// 		if (!name) { return; }
+// 		this.activityService.create(name)
+// 		.then(activity => {
+// 			this.activities.push(activity);
+// 		});
+// 	}
+//////

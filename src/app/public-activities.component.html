@@ -5,6 +5,18 @@
 		<a class="btn btn-lg btn-success" (click)=authService.login() routerLink="/special">Private Activities</a>
 	</div>
 </div>
+<div id="activity-form">
+<form>
+	<div class="form-group">
+	<input type="text" name="name" class="form-control input-lg text-center" [(ngModel)]="activityData.name" required>
+	<input type="text" name="venue" class="form-control input-lg text-center" [(ngModel)]="activityData.venue" required>
+	<input type="text" name="price" class="form-control input-lg text-center" [(ngModel)]="activityData.price" required>
+	<input type="text" name="date" class="form-control input-lg text-center" [(ngModel)]="activityData.date" required>
+	<input type="text" name="time" class="form-control input-lg text-center" [(ngModel)]="activityData.time" required>
+	<button type="submit" (click)="createActivity()">Add Activity</button>
+	</div>
+</form>
+</div>
 <div class="col-sm-4" *ngFor="let activity of publicActivities">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -24,8 +36,10 @@
 				<li class="pull-right">Max Price</li>
 			</ul>
 			<ul class="list-inline">
-				<li><a class="btn btn-danger">€{{activity.price}}</a></li>
-				<li class="pull-right"><a class="btn btn-success">€</a></li>
+				<li><a class="btn btn-success">€{{activity.price}}</a></li>
+				
+				<button class="btn btn-danger" 
+    (click)="deleteActivity(activity._id)">x</button>
 			</ul>
 		</div>
 	</div>

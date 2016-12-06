@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 
@@ -17,6 +17,7 @@ import { AuthGuard } from './auth-guard.service';
 @NgModule({
    imports: [
     BrowserModule,
+    JsonpModule,
     FormsModule,
     ReactiveFormsModule,
     routing,

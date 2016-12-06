@@ -12,13 +12,13 @@ export class QuestionService {
 		let questions: QuestionBase<any>[] = [
 
 		new DropdownQuestion({
-			key: 'brave',
-			label: 'Bravery Rating',
+			key: 'category',
+			label: 'Activity Category',
 			options: [
-			{key: 'solid', value: 'Solid'},
-			{key: 'great', value: 'Great'},
-			{key: 'good', value: 'Good'},
-			{key: 'unproven', value: 'unproven'}
+			{key: 'active', value: 'active'},
+			{key: 'eats', value: 'eats'},
+			{key: 'drinks', value: 'drinks'},
+			{key: 'custom', value: 'custom'}
 			],
 			order: 3
 		}),
