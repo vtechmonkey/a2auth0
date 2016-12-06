@@ -24,10 +24,16 @@
 		</div>
 
 		<div class="panel-body">
-		Venue {{activity.venue}}
-		Price {{activity.price}}
-		Date {{activity.date}}
-		Time {{activity.time}}
+		<label>
+		<input type="checkbox" (click)="deleteActivity(activity._id)" bind-checked="false">
+		<ul>
+		<li>ID {{activity._id}}</li>
+		<li>Venue {{activity.venue}}</li>
+		<li>Price {{activity.price}}</li>
+		<li>Date {{activity.date}}</li>
+		<li>Time {{activity.time}}</li>
+		</ul>
+		</label>
 		
 		</div>
 		<div class="panel-footer">
@@ -39,7 +45,7 @@
 				<li><a class="btn btn-success">€{{activity.price}}</a></li>
 				
 				<button class="btn btn-danger" 
-    (click)="deleteActivity(activity._id)">x</button>
+    			(click)="deleteActivity(activity._id)">x</button>
 			</ul>
 		</div>
 	</div>

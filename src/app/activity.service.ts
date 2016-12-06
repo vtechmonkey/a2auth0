@@ -36,7 +36,7 @@ export class ActivityService {
 		.map(res => res.json());
 	}
 	deleteActivity(id) {
-		return this.http.delete(this.activitiesUrl +'/_id', {headers: this.headers})
+		return this.http.delete(`${this.activitiesUrl}/${id}`)
 		.map(res => res.json());
 	}
 

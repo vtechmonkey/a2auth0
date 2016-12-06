@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
-import {Http} from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
 
 @Component({
   selector: 'public-activities',
   templateUrl: 'public-activities.component.html',
-    //providers: [...HTTP_PROVIDERS, ActivityService],
+  //providers: [...HTTP_PROVIDERS, ActivityService],
   styleUrls: ['public-activities.component.css']
 })
 
@@ -16,7 +16,7 @@ import { ActivityService } from './activity.service';
 
 export class PublicActivitiesComponent {
 
- private publicActivities: Array<Activity> = [];
+ 
  activityData = {
    name: '',
    venue: '',
@@ -26,9 +26,12 @@ export class PublicActivitiesComponent {
 
  };
 
+private publicActivities: Array<Activity> = [];
+
   constructor(
     public activityService: ActivityService,
     private authService: AuthService) {
+
     activityService.getPublicActivities()
     .subscribe((res)=> {
       this.publicActivities = res;
@@ -37,8 +40,9 @@ export class PublicActivitiesComponent {
 
  createActivity() {
    this.activityService.createActivity(this.activityData)
-   .subscribe((res) =>{
+   .subscribe((res) => {
      this.publicActivities = res;
+     //reset inputs to empty strings
      this.activityData.name = '';
      this.activityData.venue = '';
      this.activityData.price = '';
