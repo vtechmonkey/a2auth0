@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, JsonpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthHttp } from 'angular2-jwt';
+import { Activity } from './activity';
 
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { Activity } from './activity';
+import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class ActivityService {
@@ -25,17 +28,18 @@ export class ActivityService {
 	// 	.catch(this.handleError);
 	// }
 	
-	getPublicActivities() {
+	getPublicActivities() : Observable<Activity[]>{
 		return this.http
 		.get(this.publicActivitiesUrl)
-		.map(res=>res.json());
+		.map(res=>res.json())
+		.catch((error:any) => Observable.throw(error.json().error || 'Server error'))
 	}
-	createActivity(data){
+	createActivity(data) : Observable<Activity[]>{
 		return this.http.post(this.activitiesUrl, JSON.stringify(data),
 			{headers: this.headers})
 		.map(res => res.json());
 	}
-	deleteActivity(id) {
+	deleteActivity(id) : Observable<Activity[]> {
 		return this.http.delete(`${this.activitiesUrl}/${id}`)
 		.map(res => res.json());
 	}

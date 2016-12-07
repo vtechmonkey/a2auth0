@@ -8,11 +8,31 @@
 <div id="activity-form">
 <form>
 	<div class="form-group">
-	<input type="text" name="name" class="form-control input-lg text-center" [(ngModel)]="activityData.name" required>
-	<input type="text" name="venue" class="form-control input-lg text-center" [(ngModel)]="activityData.venue" required>
-	<input type="text" name="price" class="form-control input-lg text-center" [(ngModel)]="activityData.price" required>
-	<input type="text" name="date" class="form-control input-lg text-center" [(ngModel)]="activityData.date" required>
-	<input type="text" name="time" class="form-control input-lg text-center" [(ngModel)]="activityData.time" required>
+	<input name="category" type="radio" [(ngModel)]="activityData.category"
+	value="Sport"> Sport
+	<input name="category" type="radio" [(ngModel)]="activityData.category"
+	value="Drinks"> Drinks
+	<!-- <select name="category" [ngModel]="activityData.categories[0]">
+		<option *ngFor="let category of activityData.categories" [value]="activityData.category">
+		{{activityData.category}}
+		</option>
+	</select>
+	<div *ngFor="let category of activityData.categories">
+		<input
+		[id]="category" 
+		 name="category"
+		 type="radio"
+		 [value]="activityData.category"
+		 [(ngModel)]="activityData.category"
+		 required
+		 >
+		 <label [attr.for]="category">{{activityData.category}}where is the damn label???</label>
+	</div> -->
+	<input type="text" name="name" class="form-control input-lg text-center"  [(ngModel)]="activityData.name" placeholder="name" required>
+	<input type="text" name="venue" class="form-control input-lg text-center" [(ngModel)]="activityData.venue" placeholder="venue" required>
+	<input type="text" name="price" class="form-control input-lg text-center" [(ngModel)]="activityData.price" placeholder="price" required>
+	<input type="text" name="date" class="form-control input-lg text-center" [(ngModel)]="activityData.date" placeholder="date" required>
+	<input type="text" name="time" class="form-control input-lg text-center" [(ngModel)]="activityData.time" placeholder="time" required>
 	<button type="submit" (click)="createActivity()">Add Activity</button>
 	</div>
 </form>
@@ -24,26 +44,26 @@
 		</div>
 
 		<div class="panel-body">
-		<label>
-		<input type="checkbox" (click)="deleteActivity(activity._id)" bind-checked="false">
-		<ul>
-		<li>ID {{activity._id}}</li>
-		<li>Venue {{activity.venue}}</li>
-		<li>Price {{activity.price}}</li>
-		<li>Date {{activity.date}}</li>
-		<li>Time {{activity.time}}</li>
+	
+		<ul class="list-group list-group-flush">
+		
+		<li class="list-group-item">Venue <h4>{{activity.venue}}</h4></li>
+		<li class="list-group-item">Price <h4>{{activity.price}}</h4></li>
+		<li class="list-group-item">Date <h4>{{activity.date}}</h4></li>
+		<li class="list-group-item">Time <h4>{{activity.time}}</h4></li>
+		<li class="list-group-item">Time <h4>{{activity.category}}</h4></li>
 		</ul>
-		</label>
+		
 		
 		</div>
 		<div class="panel-footer">
 			<ul class="list-inline">
 				<li>Min Price</li>
-				<li class="pull-right">Max Price</li>
+				
 			</ul>
 			<ul class="list-inline">
 				<li><a class="btn btn-success">€{{activity.price}}</a></li>
-				
+				<button class="btn btn-default" (click)="editActivity()"><span class="glyphicon glyphicon-pencil"></span></button>
 				<button class="btn btn-danger" 
     			(click)="deleteActivity(activity._id)">x</button>
 			</ul>

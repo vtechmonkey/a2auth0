@@ -7,6 +7,7 @@ var ActivitySchema = new mongoose.Schema({
 	price: String,
 	date: String,
 	time: String,
+	category: String,
 	isPrivate: false
 	
 });

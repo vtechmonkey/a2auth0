@@ -16,21 +16,24 @@ import { ActivityService } from './activity.service';
 
 export class PublicActivitiesComponent {
 
- 
+
+
  activityData = {
    name: '',
    venue: '',
    price: '',
    date: '',
-   time: ''
-
+   time: '',
+   category: ''
+  // categories:["Sport", "Food", "Drinks", "Music", "Art"]
  };
 
 private publicActivities: Array<Activity> = [];
 
+
   constructor(
     public activityService: ActivityService,
-    private authService: AuthService) {
+    private authService: AuthService) { 
 
     activityService.getPublicActivities()
     .subscribe((res)=> {

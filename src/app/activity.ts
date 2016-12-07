@@ -5,4 +5,5 @@ export class Activity {
 	price: string;
 	date: string;
 	time: string;
+	category: string;
 }

@@ -54,6 +54,7 @@ activitiesRoute.post(function(req, res) {
   activity.time = req.body.time;
   activity.isPrivate = req.body.isPrivate;
   activity.price = req.body.price;
+  activity.category = req.body.category;
   // Save and check for errors
   activity.save(function(err) {
     if (err)
@@ -120,6 +121,8 @@ activityRoute.put(function (req, res){
       activity.date = req.body.date;
      if(req.body.time)
       activity.time = req.body.time;
+     if(req.body.category)
+      activity.category = req.body.category;
     if(req.body.isPrivate)
     activity.isPrivate = req.body.isPrivate;
     
