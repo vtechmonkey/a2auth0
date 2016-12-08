@@ -43,8 +43,12 @@ export class ActivityService {
 		return this.http.delete(`${this.activitiesUrl}/${id}`)
 		.map(res => res.json());
 	}
-
-	
+	editActivity(data) : Observable<Activity[]> {
+		const url = `${this.activitiesUrl}/${data.id}`;
+		return this.http
+		.put(url, JSON.stringify(data), {headers: this.headers})
+		.map(res => res.json());
+	}
 
 
 	// getPublicActivities() : Promise<Activity[]> {

@@ -25,7 +25,7 @@ export class PublicActivitiesComponent {
    date: '',
    time: '',
    category: ''
-  // categories:["Sport", "Food", "Drinks", "Music", "Art"]
+  
  };
 
 private publicActivities: Array<Activity> = [];
@@ -55,6 +55,12 @@ private publicActivities: Array<Activity> = [];
  }
  deleteActivity(id) {
    this.activityService.deleteActivity(id)
+   .subscribe((res)=> {
+     this.publicActivities = res;
+   });
+ }
+  editActivity() {
+   this.activityService.editActivity(this.activityData)
    .subscribe((res)=> {
      this.publicActivities = res;
    });
