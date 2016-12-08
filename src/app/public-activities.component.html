@@ -26,7 +26,8 @@
 	<input type="text" name="price" class="form-control input-lg text-center" [(ngModel)]="activityData.price" placeholder="price" required>
 	<input type="text" name="date" class="form-control input-lg text-center" [(ngModel)]="activityData.date" placeholder="date" required>
 	<input type="text" name="time" class="form-control input-lg text-center" [(ngModel)]="activityData.time" placeholder="time" required>
-	<button type="submit" (click)="createActivity()">Add Activity</button>
+	<button class="btn btn-warning" (click)=authService.login() *ngIf="!authService.loggedIn()">Log in to save your event! </button>
+	<button class="btn btn-success" type="submit" *ngIf="authService.loggedIn()" (click)="createActivity()">Add Activity</button>
 	</div>
 </form>
 </div>
