@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
+
+import { Observable} from "rxjs/Observable"
+import "rxjs/add/observable/combineLatest";
+import "rxjs/add/operator/filter";
 
 @Component({
   selector: 'public-activities',
@@ -16,7 +20,16 @@ import { ActivityService } from './activity.service';
 
 export class PublicActivitiesComponent {
 
+// @ViewChild('activityForm') form;
 
+//    ngAfterViewInit(){
+//     Observable.combineLatest(
+//       this.form.statusChange,
+//       this.form.valueChanges,
+//       (status, value)=>({status, value})
+//     )
+  
+//   }
 
  activityData = {
    name: '',
@@ -30,10 +43,12 @@ export class PublicActivitiesComponent {
 
 private publicActivities: Array<Activity> = [];
 
-
+  
   constructor(
     public activityService: ActivityService,
     private authService: AuthService) { 
+
+
 
     activityService.getPublicActivities()
     .subscribe((res)=> {
@@ -45,7 +60,7 @@ private publicActivities: Array<Activity> = [];
    this.activityService.createActivity(this.activityData)
    .subscribe((res) => {
      this.publicActivities = res;
-     //reset inputs to empty strings
+   //  reset inputs to empty strings
      this.activityData.name = '';
      this.activityData.venue = '';
      this.activityData.price = '';

@@ -20,13 +20,13 @@ export class ActivityService {
 								
 	constructor(public http: Http, private authHttp: AuthHttp){ }
 
-	// getActivities(): Promise<Activity[]> {
-	// 	return this.http
-	// 	.get(this.activitiesUrl)
-	// 	.toPromise()
-	// 	.then(response => response.json().data as Activity[])
-	// 	.catch(this.handleError);
-	// }
+	getActivities(): Promise<Activity[]> {
+		return this.http
+		.get(this.activitiesUrl)
+		.toPromise()
+		.then(response => response.json().data as Activity[])
+		.catch(this.handleError);
+	}
 	
 	getPublicActivities() : Observable<Activity[]>{
 		return this.http

@@ -32,9 +32,7 @@ import { Observable } from 'rxjs/Observable';
 				</li>
 			</ul>
 		</nav>
-		<div>
-			<input type="text" [formControl]="af" />
-		</div>
+	
 		<div class="col-sm-12">
 			<router-outlet></router-outlet>
 		</div>

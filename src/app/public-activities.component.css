@@ -1,3 +1,10 @@
 .panel-body {
 	min-height: 100px;
 }
+.radioIcons {
+	color: grey;
+}
+.glyphiconDrink {
+color:pink;
+font-size:120px;
+}

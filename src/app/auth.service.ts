@@ -4,9 +4,15 @@ import { Router } from '@angular/router';
 
 declare var Auth0Lock: any;
 
-@Injectable()
+@Injectable()	
+
 	export class AuthService {
-		lock = new Auth0Lock('pwDyOusCeQTYNKMtHMgjVy8y89TQtASm','vtechmonkey.eu.auth0.com');
+		lock = new Auth0Lock('pwDyOusCeQTYNKMtHMgjVy8y89TQtASm','vtechmonkey.eu.auth0.com',
+			{
+				auth:{
+					redirect:false
+				}
+			});
 	constructor(private router: Router) {
 		this.lock.on('authenticated', (authResult: any) => {
 
