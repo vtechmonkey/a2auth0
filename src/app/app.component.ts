@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 	<div class="container">
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
-				<a class="navbar-brand" routerLink="/dashboard">{{title}}</a>
+				<a class="navbar-brand" routerLink="/activities">{{title}}</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li>
@@ -38,7 +38,7 @@ import { Observable } from 'rxjs/Observable';
 		</div>
 	</div>
  `,
-  styleUrls: [`.navbar-right { margin-right: 0px !important }`],
+  styleUrls: [`.navbar-right { margin-right: 0px !important }`], 
   providers: [QuestionService]
 })
 export class AppComponent {

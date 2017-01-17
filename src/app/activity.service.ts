@@ -27,13 +27,21 @@ export class ActivityService {
 		.then(response => response.json().data as Activity[])
 		.catch(this.handleError);
 	}
-	
-	getPublicActivities() : Observable<Activity[]>{
-		return this.http
-		.get(this.publicActivitiesUrl)
-		.map(res=>res.json())
-		.catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+	getActivity(id: number): Promise<Activity> {
+		const url = `${this.activitiesUrl}/${id}`;
+		return this.http.get(url)
+		.toPromise()
+		.then(response => response.json().data as Activity)
+		.catch(this.handleError);
+		//.then(activities => activities.filter(activity => activity.id === id)[0]);
 	}
+	
+	// getPublicActivities() : Observable<Activity[]>{
+	// 	return this.http
+	// 	.get(this.publicActivitiesUrl)
+	// 	.map(res=>res.json())
+	// 	.catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+	// }
 	createActivity(data) : Observable<Activity[]>{
 		return this.http.post(this.activitiesUrl, JSON.stringify(data),
 			{headers: this.headers})
@@ -50,14 +58,24 @@ export class ActivityService {
 		.map(res => res.json());
 	}
 
+	
 
-	// getPublicActivities() : Promise<Activity[]> {
+	// getActivity(id) : Observable<Activity[]> {
 	// 	return this.http
 	// 	.get(this.publicActivitiesUrl)
-	// 	.toPromise()
-	// 	.then(response=>response.json() as Activity[])
-	// 	.catch(this.handleError);
+	// 	.map(res=>res.json())
+	// 	.filter(a => a.id === id)[0];
+		
 	// }
+
+
+	getPublicActivities() : Promise<Activity[]> {
+		return this.http
+		.get(this.publicActivitiesUrl)
+		.toPromise()
+		.then(response=>response.json() as Activity[])
+		.catch(this.handleError);
+	}
 
 	getPrivateActivities() : Promise<Activity[]> {
 		return this.authHttp

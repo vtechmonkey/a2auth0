@@ -1,0 +1,363 @@
+[
+  {
+    "name": "AppModule",
+    "file": "src/app/app.module.ts",
+    "providers": [
+      {
+        "name": "ActivityService"
+      },
+      {
+        "name": "AUTH_PROVIDERS"
+      },
+      {
+        "name": "AuthService"
+      },
+      {
+        "name": "AuthGuard"
+      }
+    ],
+    "declarations": [
+      {
+        "name": "AppComponent",
+        "file": "src/app/app.component.ts",
+        "selector": "daily-activities",
+        "providers": [
+          {
+            "name": "QuestionService"
+          }
+        ],
+        "templateUrl": [],
+        "styleUrls": [
+          ".navbar-right { margin-right: 0px !important }"
+        ],
+        "__raw": [
+          {
+            "kind": 253,
+            "pos": 404,
+            "end": 435,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 404,
+              "end": 415,
+              "flags": 0,
+              "text": "selector"
+            },
+            "initializer": {
+              "kind": 9,
+              "pos": 416,
+              "end": 435,
+              "flags": 0,
+              "text": "daily-activities"
+            }
+          },
+          {
+            "kind": 253,
+            "pos": 436,
+            "end": 1261,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 436,
+              "end": 447,
+              "flags": 0,
+              "text": "template"
+            },
+            "initializer": {
+              "kind": 11,
+              "pos": 448,
+              "end": 1261,
+              "flags": 0,
+              "text": "\n\t<div class=\"container\">\n\t\t<nav class=\"navbar navbar-default\">\n\t\t\t<div class=\"navbar-header\">\n\t\t\t\t<a class=\"navbar-brand\" routerLink=\"/dashboard\">{{title}}</a>\n\t\t\t</div>\n\t\t\t<ul class=\"nav navbar-nav\">\n\t\t\t\t<li>\n\t\t\t\t\t<a routerLink=\"/activities\" *ngIf=\"authService.loggedIn()\" routerLinkActive=\"active\">Public Activities</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a routerLink=\"/special\" *ngIf=\"authService.loggedIn()\" routerLinkActive=\"active\">Private Activities</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t\t<ul class=\"nav navbar-nav navbar-right\">\n\t\t\t\t<li>\n\t\t\t\t\t<a (click)=authService.login() *ngIf=\"!authService.loggedIn()\">Log in</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t<a (click)=authService.logout() *ngIf=\"authService.loggedIn()\">Log out</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\t\t</nav>\n\t\n\t\t<div class=\"col-sm-12\">\n\t\t\t<router-outlet></router-outlet>\n\t\t</div>\n\t</div>\n "
+            }
+          },
+          {
+            "kind": 253,
+            "pos": 1262,
+            "end": 1326,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 1262,
+              "end": 1274,
+              "flags": 0,
+              "text": "styleUrls"
+            },
+            "initializer": {
+              "kind": 170,
+              "pos": 1275,
+              "end": 1326,
+              "flags": 0,
+              "elements": [
+                {
+                  "kind": 11,
+                  "pos": 1277,
+                  "end": 1325,
+                  "flags": 0,
+                  "text": ".navbar-right { margin-right: 0px !important }"
+                }
+              ]
+            }
+          },
+          {
+            "kind": 253,
+            "pos": 1327,
+            "end": 1359,
+            "flags": 0,
+            "name": {
+              "kind": 69,
+              "pos": 1327,
+              "end": 1340,
+              "flags": 0,
+              "text": "providers"
+            },
+            "initializer": {
+              "kind": 170,
+              "pos": 1341,
+              "end": 1359,
+              "flags": 0,
+              "elements": [
+                {
+                  "kind": 69,
+                  "pos": 1343,
+                  "end": 1358,
+                  "flags": 0,
+                  "text": "QuestionService"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DynamicFormComponent"
+      },
+      {
+        "name": "DynamicFormQuestionComponent"
+      },
+      {
+        "name": "routedComponents"
+      }
+    ],
+    "imports": [
+      {
+        "name": "BrowserModule"
+      },
+      {
+        "name": "JsonpModule"
+      },
+      {
+        "name": "FormsModule"
+      },
+      {
+        "name": "ReactiveFormsModule"
+      },
+      {
+        "name": "routing"
+      },
+      {
+        "name": "HttpModule"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [
+      {
+        "name": "AppComponent"
+      }
+    ],
+    "__raw": [
+      {
+        "kind": 253,
+        "pos": 762,
+        "end": 886,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 762,
+          "end": 773,
+          "flags": 0,
+          "text": "imports"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 774,
+          "end": 886,
+          "flags": 0,
+          "multiLine": true,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 776,
+              "end": 794,
+              "flags": 0,
+              "text": "BrowserModule"
+            },
+            {
+              "kind": 69,
+              "pos": 795,
+              "end": 811,
+              "flags": 0,
+              "text": "JsonpModule"
+            },
+            {
+              "kind": 69,
+              "pos": 812,
+              "end": 828,
+              "flags": 0,
+              "text": "FormsModule"
+            },
+            {
+              "kind": 69,
+              "pos": 829,
+              "end": 853,
+              "flags": 0,
+              "text": "ReactiveFormsModule"
+            },
+            {
+              "kind": 69,
+              "pos": 854,
+              "end": 866,
+              "flags": 0,
+              "text": "routing"
+            },
+            {
+              "kind": 69,
+              "pos": 867,
+              "end": 882,
+              "flags": 0,
+              "text": "HttpModule"
+            }
+          ]
+        }
+      },
+      {
+        "kind": 253,
+        "pos": 887,
+        "end": 1038,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 887,
+          "end": 902,
+          "flags": 0,
+          "text": "declarations"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 903,
+          "end": 1038,
+          "flags": 0,
+          "multiLine": true,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 905,
+              "end": 922,
+              "flags": 0,
+              "text": "AppComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 923,
+              "end": 948,
+              "flags": 0,
+              "text": "DynamicFormComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 949,
+              "end": 982,
+              "flags": 0,
+              "text": "DynamicFormQuestionComponent"
+            },
+            {
+              "kind": 69,
+              "pos": 983,
+              "end": 1004,
+              "flags": 0,
+              "text": "routedComponents"
+            }
+          ]
+        }
+      },
+      {
+        "kind": 253,
+        "pos": 1039,
+        "end": 1130,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 1039,
+          "end": 1051,
+          "flags": 0,
+          "text": "providers"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 1052,
+          "end": 1130,
+          "flags": 0,
+          "multiLine": true,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 1054,
+              "end": 1074,
+              "flags": 0,
+              "text": "ActivityService"
+            },
+            {
+              "kind": 69,
+              "pos": 1075,
+              "end": 1094,
+              "flags": 0,
+              "text": "AUTH_PROVIDERS"
+            },
+            {
+              "kind": 69,
+              "pos": 1095,
+              "end": 1111,
+              "flags": 0,
+              "text": "AuthService"
+            },
+            {
+              "kind": 69,
+              "pos": 1112,
+              "end": 1126,
+              "flags": 0,
+              "text": "AuthGuard"
+            }
+          ]
+        }
+      },
+      {
+        "kind": 253,
+        "pos": 1131,
+        "end": 1159,
+        "flags": 0,
+        "name": {
+          "kind": 69,
+          "pos": 1131,
+          "end": 1143,
+          "flags": 0,
+          "text": "bootstrap"
+        },
+        "initializer": {
+          "kind": 170,
+          "pos": 1144,
+          "end": 1159,
+          "flags": 0,
+          "elements": [
+            {
+              "kind": 69,
+              "pos": 1146,
+              "end": 1158,
+              "flags": 0,
+              "text": "AppComponent"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

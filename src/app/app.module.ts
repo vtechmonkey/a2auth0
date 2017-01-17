@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { routing, routedComponents } from './app.routing';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question.component';
+import { ActivityDetailComponent } from './activity-detail.component';
 
 import { ActivityService } from './activity.service';
 import { AuthService } from './auth.service';
@@ -27,7 +28,8 @@ import { AuthGuard } from './auth-guard.service';
     AppComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-    routedComponents
+    routedComponents,
+   //ActivityDetailComponent
   ],
   providers: [
     ActivityService,

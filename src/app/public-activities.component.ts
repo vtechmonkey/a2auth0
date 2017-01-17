@@ -1,8 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
+import { Router } from  '@angular/router';
+
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
+
+//import { ActivityDetailComponent } from './activity-detail.component';
 
 import { Observable} from "rxjs/Observable"
 import "rxjs/add/observable/combineLatest";
@@ -15,21 +19,8 @@ import "rxjs/add/operator/filter";
   styleUrls: ['public-activities.component.css']
 })
 
+export class PublicActivitiesComponent  implements OnInit {
 
-
-
-export class PublicActivitiesComponent {
-
-// @ViewChild('activityForm') form;
-
-//    ngAfterViewInit(){
-//     Observable.combineLatest(
-//       this.form.statusChange,
-//       this.form.valueChanges,
-//       (status, value)=>({status, value})
-//     )
-  
-//   }
 
  activityData = {
    name: '',
@@ -41,20 +32,50 @@ export class PublicActivitiesComponent {
   
  };
 
+selectedActivity: Activity;
+activities: Activity[];
 private publicActivities: Array<Activity> = [];
 
+
   
+
   constructor(
-    public activityService: ActivityService,
-    private authService: AuthService) { 
+    private activityService: ActivityService,
+    private authService: AuthService,
+    private router: Router ) { 
+    //   activityService
+    // .getPublicActivities()
+    // .then((res) => {
+    //   this.publicActivities = res;
+    //   });
 
-
-
-    activityService.getPublicActivities()
-    .subscribe((res)=> {
-      this.publicActivities = res;
-    });
   }
+
+  getPublicActivites(): void {
+    this.activityService
+    .getPublicActivities()
+    .then((res) => {
+      this.publicActivities = res;
+      });
+   } 
+
+   ngOnInit(): void {
+     this.getPublicActivites();
+   }
+  // activityService.getPublicActivities()
+  //   .then((res)=> {
+  //     this.publicActivities = res;
+  //   });
+
+
+  onSelect(activity: Activity): void {
+  this.selectedActivity = activity;
+}
+
+  gotoDetail(id): void  {
+      
+  this.router.navigate(['/detail', this.selectedActivity._id]);
+}
 
  createActivity() {
    this.activityService.createActivity(this.activityData)
@@ -81,4 +102,8 @@ private publicActivities: Array<Activity> = [];
    });
  }
  
+
+// ngOnInit(): void {
+//   this.getPublicActivites();
+// }
 }

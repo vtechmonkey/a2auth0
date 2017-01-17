@@ -40,7 +40,22 @@
 </form>
 </div>
 
-<div class="col-sm-4" *ngFor="let activity of publicActivities" (click)="onSelect(activity)">
+ --> <!-- div for selected event -->
+
+<div *ngIf="selectedActivity">
+		<h2>{{selectedActivity.name}} details!</h2>
+		<h4>{{selectedActivity._id}} Share this link!</h4>
+		Venue <h4>{{selectedActivity.venue}}</h4>
+		Price <h4>{{selectedActivity.price}}</h4>
+		Date <h4>{{selectedActivity.date}}</h4>
+		Time <h4>{{selectedActivity.time}}</h4>
+		<button (click)="gotoDetail()">View Details</button>
+					<button class="btn btn-default" (click)="editActivity(activity._id)"><span class="glyphicon glyphicon-pencil"></span></button>
+
+</div>
+<!-- dashboard of events 
+ -->
+ <div class="col-sm-4" *ngFor="let activity of publicActivities" (click)="onSelect(activity)">
 	<div class="panel panel-default">
 		<div class="panel-heading text-center">
 
@@ -63,19 +78,18 @@
 		<li class="list-group-item">Price <h4>{{activity.price}}</h4></li>
 		<li class="list-group-item">Date <h4>{{activity.date}}</h4></li>
 		<li class="list-group-item">Time <h4>{{activity.time}}</h4></li>
-		<li class="list-group-item">	<span *ngIf="activity.category == drinks" class="glyphicon glyphicon-glass glyphiconGlass"></span> Category<h4>{{activity.category}}</h4></li>
-		</ul>
-		
-		
+		<li class="list-group-item">	
+		<span *ngIf="activity.category == Drinks" class="glyphicon glyphicon-glass glyphiconGlass"></span> Category<h4>{{activity.category}}</h4></li>
+		</ul>		
 		</div>
 		<div class="panel-footer">
+		
 			<ul class="list-inline">
 				<li>Min Price</li>
 				
 			</ul>
 			<ul class="list-inline">
 				<li><a class="btn btn-success">€{{activity.price}}</a></li>
-				<button class="btn btn-default" (click)="editActivity(activity._id)"><span class="glyphicon glyphicon-pencil"></span></button>
 				<button class="btn btn-danger" 
     			(click)="deleteActivity(activity._id)">x</button>
 			</ul>

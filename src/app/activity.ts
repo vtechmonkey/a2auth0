@@ -1,5 +1,5 @@
 export class Activity {
-	id: number;
+	_id: number;
 	name: string;
 	venue: string; 
 	price: string;
