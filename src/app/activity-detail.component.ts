@@ -36,6 +36,7 @@ export class ActivityDetailComponent implements OnInit {
 			 this.activityService
             .getActivity(+params['id']))
 			.subscribe(activity => this.activity = activity));
+		
 		console.log(this.activity.name);
 	}
 		
