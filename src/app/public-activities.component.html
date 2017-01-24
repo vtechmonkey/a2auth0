@@ -1,0 +1,86 @@
+<h3 class="text-center"> Activities</h3>
+<div class="col-sm-12" *ngIf="!authService.loggedIn()">
+	<div class="jumbotron text-center">
+		<h2>Login to view your invites</h2>
+		<a class="btn btn-lg btn-success" (click)=authService.login() routerLink="/special">Private Activities</a>
+	</div>
+</div>
+
+<div id="activity-form">
+<form #activityForm="ngForm">
+	<div class="form-group">
+	<h3 class="text-center"> Choose a category for your event</h3>
+		<div class=" input-lg text-center radioIcons">
+			<span class="glyphicon glyphicon-heart"></span> SPORT<input name="category" type="radio" [(ngModel)]="activityData.category"
+			value="Sport"> 
+			<span class="glyphicon glyphicon-glass"></span> DRINKS
+			<input name="category" type="radio" [(ngModel)]="activityData.category"
+			value="Drinks">
+			<span class="glyphicon glyphicon-cutlery"></span> FOOD <input name="category" type="radio" [(ngModel)]="activityData.category"
+			value="Food"> 
+			<span class="glyphicon glyphicon-facetime-video"></span>
+			MOVIE <input name="category" type="radio" [(ngModel)]="activityData.category"
+			value="Movie"> 
+			<span class="glyphicon glyphicon-sunglasses"></span> ARSTY
+			<input name="category" type="radio" [(ngModel)]="activityData.category"
+			value="Artsy"> 
+			<span class="glyphicon glyphicon-music"></span>
+			Gig <input name="category" type="radio" [(ngModel)]="activityData.category"
+			value="Gig"> 
+		</div>
+
+			<input type="text" name="name" class="form-control input-lg text-center"  [(ngModel)]="activityData.name" placeholder="name" required>
+			<input type="text" name="venue" class="form-control input-lg text-center" [(ngModel)]="activityData.venue" placeholder="venue" required>
+			<input type="text" name="price" class="form-control input-lg text-center" [(ngModel)]="activityData.price" placeholder="price" required>
+			<input type="text" name="date" class="form-control input-lg text-center" [(ngModel)]="activityData.date" placeholder="date" required>
+			<input type="text" name="time" class="form-control input-lg text-center" [(ngModel)]="activityData.time" placeholder="time" required>
+			<button class="btn btn-warning" (click)=authService.login() *ngIf="!authService.loggedIn()">Log in to save your event! </button>
+			<button class="btn btn-success" type="submit" (ngSubmit)="onSubmit(activityFrom.value)"  *ngIf="authService.loggedIn()" (click)="createActivity()">Add Activity</button>
+	</div>
+</form>
+</div>
+
+<div class="col-sm-4" *ngFor="let activity of publicActivities" (click)="onSelect(activity)">
+	<div class="panel panel-default">
+		<div class="panel-heading text-center">
+
+		
+		<span *ngIf="activity.category == 'Drinks'" class="glyphicon glyphicon-glass glyphiconDrink"></span>
+		<span *ngIf="!activity.category" class="glyphicon glyphicon-question-sign glyphiconDrink"></span>
+		<span *ngIf="activity.category == 'Sport'" class="glyphicon glyphicon-heart glyphiconDrink"></span>
+		<span *ngIf="activity.category == 'Food'" class="glyphicon glyphicon-cutlery glyphiconDrink"></span>
+		<span *ngIf="activity.category == 'Artsy'" class="glyphicon glyphicon-sunglasses glyphiconDrink"></span>
+		<span *ngIf="activity.category == 'Gig'" class="glyphicon glyphicon-music glyphiconDrink"></span>
+		<span *ngIf="activity.category == 'Movie'" class="glyphicon glyphicon-facetime-video glyphiconDrink"></span>
+			<h3 class="panel-title">{{activity.name}}</h3>
+		</div>
+
+		<div class="panel-body">
+	
+		<ul class="list-group list-group-flush">
+		
+		<li class="list-group-item">Venue <h4>{{activity.venue}}</h4></li>
+		<li class="list-group-item">Price <h4>{{activity.price}}</h4></li>
+		<li class="list-group-item">Date <h4>{{activity.date}}</h4></li>
+		<li class="list-group-item">Time <h4>{{activity.time}}</h4></li>
+		<li class="list-group-item">	<span *ngIf="activity.category == drinks" class="glyphicon glyphicon-glass glyphiconGlass"></span> Category<h4>{{activity.category}}</h4></li>
+		</ul>
+		
+		
+		</div>
+		<div class="panel-footer">
+			<ul class="list-inline">
+				<li>Min Price</li>
+				
+			</ul>
+			<ul class="list-inline">
+				<li><a class="btn btn-success">€{{activity.price}}</a></li>
+				<button class="btn btn-default" (click)="editActivity(activity._id)"><span class="glyphicon glyphicon-pencil"></span></button>
+				<button class="btn btn-danger" 
+    			(click)="deleteActivity(activity._id)">x</button>
+			</ul>
+		</div>
+	</div>
+</div>
+
+

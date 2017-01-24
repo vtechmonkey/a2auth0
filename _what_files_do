@@ -1,0 +1,62 @@
+app.module
+		Imports everything 
+		NgModule lists 
+			Imports
+			Declarations
+			Providers
+			bootstrap: [AppComponent]
+		Exports AppModule
+
+app.component
+		Import 
+		Component, AuthService
+		@Component 
+		Export appComponent
+		private authService
+
+index.ts
+		Export app component
+		Export app module
+
+main.ts 
+		Import 
+		platform, AppModule
+		Bootstrap platform and AppModule
+
+app.routing
+		Import 
+		routes,routeModule,CanActivate,auth-guard,routed components
+		set appRoutes 
+		export routes and routedComponents 
+
+activity.service
+		Import
+		Injectable, Headers, Http, Response, AuthHttp, rxjs, activity.ts
+		@Injectable 
+		export ActivityService
+		constructor http, authHttp
+		getPublicActivities
+		getPrivateActivities
+		handleError
+
+auth.service
+		Import 
+		Injectable, tokenNotExpired, Router
+		declare Auth0Lock
+		@Injectable
+		export AuthService
+		lock = new Auth0Lock
+		private router
+		authResult idToken
+
+auth-guard.service
+		Import
+		Injectable, Router, CanActivate, AuthService
+		Export AuthGuard 
+		implement CanActivate
+		private authService, private Router
+
+
+
+
+

@@ -1,0 +1,33 @@
+<h3 class="text-center">Private (special) Activities</h3>
+
+<div class="col-sm-4" *ngFor="let activity of privateActivities">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{activity.name}}</h3>
+		</div>
+
+		<div class="panel-body">
+		{{activity.venue}}
+		
+		{{activity.date}}
+		{{activity.time}}
+		</div>
+		<div class="panel-footer">
+			<ul class="list-inline">
+				<li>Original</li>
+				<li class="pull-right">Sale</li>
+			</ul>
+			<ul class="list-inline">
+				<li><a class="btn btn-danger">€{{activity.Price}} </a></li>
+				<li class="pull-right"><a class="btn btn-success" (click)="attend(activity)">€{{activity.price}}</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12">
+	<div class="jumbotron text-center">
+		<h2>view Public Activities</h2>
+		<a class="btn btn-lg btn-success" routerLink="/activities">Public Activities</a>
+	</div>
+</div>
