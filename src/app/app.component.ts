@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  import { Component } from '@angular/core';
+=======
+import { Component } from '@angular/core';
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
@@ -13,7 +17,11 @@ import { Observable } from 'rxjs/Observable';
 	<div class="container">
 		<nav class="navbar navbar-default">
 			<div class="navbar-header">
+<<<<<<< HEAD
 				<a class="navbar-brand" routerLink="/activities">{{title}}</a>
+=======
+				<a class="navbar-brand" routerLink="/dashboard">{{title}}</a>
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 			</div>
 			<ul class="nav navbar-nav">
 				<li>
@@ -38,7 +46,11 @@ import { Observable } from 'rxjs/Observable';
 		</div>
 	</div>
  `,
+<<<<<<< HEAD
   styleUrls: [`.navbar-right { margin-right: 0px !important }`], 
+=======
+  styleUrls: [`.navbar-right { margin-right: 0px !important }`],
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
   providers: [QuestionService]
 })
 export class AppComponent {

@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 var Activity = require('./models/activity');
 const jwt = require('express-jwt');
 const cors = require('cors');
+
+const path = require('path');
+const http = require('http');
+
 //http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti');
@@ -19,10 +23,26 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+
+// 
+app.use(express.static(path.join(__dirname, 'dist')));
+
+
+// Catch all other routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
+
 //use cors 
 app.use(cors());
 // Use environment defined port or 3000
 var port = process.env.PORT || 3000;
+
+
+const server = http.createServer(app);
+
 
 const authCheck =jwt({
  secret: new Buffer('by27muMa4KanRODi_XPA05egyA2VQnfI9FVpi157dS-MzXK9V9wLPAVGJBH-giCr', 'base64'),
@@ -151,5 +171,6 @@ activityRoute.delete( function (req, res){
 app.use('/api', router);
 
 // Start the server
-app.listen(port);
-console.log('Insert activity on port ' + port);
+
+server.listen(port, () => console.log(`API running on localhost:${port}`));
+

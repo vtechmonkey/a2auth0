@@ -9,7 +9,10 @@ import { AppComponent } from './app.component';
 import { routing, routedComponents } from './app.routing';
 import { DynamicFormComponent } from './dynamic-form.component';
 import { DynamicFormQuestionComponent } from './dynamic-form-question.component';
+<<<<<<< HEAD
 import { ActivityDetailComponent } from './activity-detail.component';
+=======
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 
 import { ActivityService } from './activity.service';
 import { AuthService } from './auth.service';
@@ -28,8 +31,12 @@ import { AuthGuard } from './auth-guard.service';
     AppComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
+<<<<<<< HEAD
     routedComponents,
    //ActivityDetailComponent
+=======
+    routedComponents
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
   ],
   providers: [
     ActivityService,
