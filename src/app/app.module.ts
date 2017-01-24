@@ -27,12 +27,8 @@ import { AuthGuard } from './auth-guard.service';
     AppComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
-<<<<<<< HEAD
     routedComponents,
-   //ActivityDetailComponent
-=======
-    routedComponents
->>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
+
   ],
   providers: [
     ActivityService,

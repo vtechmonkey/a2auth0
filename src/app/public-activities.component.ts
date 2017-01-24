@@ -10,6 +10,10 @@ import { ActivityService } from './activity.service';
 //import { ActivityDetailComponent } from './activity-detail.component';
 
 
+<<<<<<< HEAD
+=======
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
+>>>>>>> a30a009149c2ec93fc7759a881cd51da60307116
 import { Observable} from "rxjs/Observable"
 import "rxjs/add/observable/combineLatest";
 import "rxjs/add/operator/filter";

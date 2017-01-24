@@ -6,11 +6,10 @@ const bodyParser = require('body-parser');
 var Activity = require('./models/activity');
 const jwt = require('express-jwt');
 const cors = require('cors');
-<<<<<<< HEAD
-=======
+
 const path = require('path');
 const http = require('http');
->>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
+
 //http://scottksmith.com/blog/2014/05/02/building-restful-apis-with-node/
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti');
@@ -24,8 +23,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-<<<<<<< HEAD
-=======
 
 // 
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -37,17 +34,15 @@ app.get('*', (req, res) => {
 });
 
 
->>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
+
 //use cors 
 app.use(cors());
 // Use environment defined port or 3000
 var port = process.env.PORT || 3000;
 
-<<<<<<< HEAD
-=======
+
 const server = http.createServer(app);
 
->>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 const authCheck =jwt({
  secret: new Buffer('by27muMa4KanRODi_XPA05egyA2VQnfI9FVpi157dS-MzXK9V9wLPAVGJBH-giCr', 'base64'),
  audience: 'pwDyOusCeQTYNKMtHMgjVy8y89TQtASm'
