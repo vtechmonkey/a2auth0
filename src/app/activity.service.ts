@@ -27,6 +27,7 @@ export class ActivityService {
 		.then(response => response.json().data as Activity[])
 		.catch(this.handleError);
 	}
+
 	getActivity(id: number): Promise<Activity> {
 		const url = `${this.activitiesUrl}/${id}`;
 		return this.http.get(url)
@@ -42,6 +43,15 @@ export class ActivityService {
 	// 	.map(res=>res.json())
 	// 	.catch((error:any) => Observable.throw(error.json().error || 'Server error'))
 	// }
+// =======
+	
+// 	getPublicActivities() : Observable<Activity[]>{
+// 		return this.http
+// 		.get(this.publicActivitiesUrl)
+// 		.map(res=>res.json())
+// 		.catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+// 	}
+// >>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 	createActivity(data) : Observable<Activity[]>{
 		return this.http.post(this.activitiesUrl, JSON.stringify(data),
 			{headers: this.headers})
@@ -58,6 +68,7 @@ export class ActivityService {
 		.map(res => res.json());
 	}
 
+<<<<<<< HEAD
 	
 
 	// getActivity(id) : Observable<Activity[]> {
@@ -77,6 +88,17 @@ export class ActivityService {
 		.catch(this.handleError);
 	}
 
+=======
+
+	// getPublicActivities() : Promise<Activity[]> {
+	// 	return this.http
+	// 	.get(this.publicActivitiesUrl)
+	// 	.toPromise()
+	// 	.then(response=>response.json() as Activity[])
+	// 	.catch(this.handleError);
+	// }
+
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 	getPrivateActivities() : Promise<Activity[]> {
 		return this.authHttp
 		.get(this.privateActivitiesUrl)

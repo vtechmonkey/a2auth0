@@ -1,12 +1,14 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
+<<<<<<< HEAD
 import { Router } from  '@angular/router';
 
 import { Activity } from './activity';
 import { ActivityService } from './activity.service';
 
 //import { ActivityDetailComponent } from './activity-detail.component';
+
 
 import { Observable} from "rxjs/Observable"
 import "rxjs/add/observable/combineLatest";
@@ -19,9 +21,28 @@ import "rxjs/add/operator/filter";
   styleUrls: ['public-activities.component.css']
 })
 
+<<<<<<< HEAD
 export class PublicActivitiesComponent  implements OnInit {
 
 
+=======
+
+
+
+export class PublicActivitiesComponent {
+
+// @ViewChild('activityForm') form;
+
+//    ngAfterViewInit(){
+//     Observable.combineLatest(
+//       this.form.statusChange,
+//       this.form.valueChanges,
+//       (status, value)=>({status, value})
+//     )
+  
+//   }
+
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
  activityData = {
    name: '',
    venue: '',
@@ -32,6 +53,7 @@ export class PublicActivitiesComponent  implements OnInit {
   
  };
 
+<<<<<<< HEAD
 selectedActivity: Activity;
 activities: Activity[];
 private publicActivities: Array<Activity> = [];
@@ -76,6 +98,22 @@ private publicActivities: Array<Activity> = [];
       
   this.router.navigate(['/detail', this.selectedActivity._id]);
 }
+=======
+private publicActivities: Array<Activity> = [];
+
+  
+  constructor(
+    public activityService: ActivityService,
+    private authService: AuthService) { 
+
+
+
+    activityService.getPublicActivities()
+    .subscribe((res)=> {
+      this.publicActivities = res;
+    });
+  }
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 
  createActivity() {
    this.activityService.createActivity(this.activityData)
@@ -102,8 +140,11 @@ private publicActivities: Array<Activity> = [];
    });
  }
  
+<<<<<<< HEAD
 
 // ngOnInit(): void {
 //   this.getPublicActivites();
 // }
+=======
+>>>>>>> 5208f1f5dc8ab596e8663c68a029a5c367578c0a
 }
